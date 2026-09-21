@@ -3,49 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎬 CineMagic | Movie Ticket Booking</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <title>CineBook · movie tickets</title>
+  <!-- Font Awesome 6 (free) for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
       background: linear-gradient(145deg, #0b0f1c 0%, #141b2b 100%);
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 1.5rem;
     }
 
     /* main card */
-    .booking-container {
+    .booking-platform {
       max-width: 1300px;
       width: 100%;
-      background: rgba(20, 27, 43, 0.8);
+      background: rgba(18, 25, 40, 0.9);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 2.5rem;
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 0, 0.1) inset;
       padding: 2rem 2rem 1.8rem;
-      transition: all 0.3s;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     /* header */
     .header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      align-items: center;
+      margin-bottom: 2.2rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
@@ -53,811 +49,553 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 0.7rem;
     }
 
     .logo i {
-      font-size: 2.8rem;
-      color: #ffd966;
-      filter: drop-shadow(0 0 8px rgba(255, 210, 80, 0.6));
+      font-size: 2.5rem;
+      color: #f5c542;
+      filter: drop-shadow(0 0 10px rgba(245, 197, 66, 0.5));
     }
 
     .logo h1 {
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #fff3d1, #ffd966);
+      background: linear-gradient(to right, #ffffff, #d9e2f0);
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
+    }
+
+    .logo span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #9aa8c0;
+      margin-left: 0.2rem;
     }
 
     .user-profile {
       display: flex;
       align-items: center;
-      gap: 15px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 0.5rem 1.2rem 0.5rem 0.8rem;
-      border-radius: 40px;
-      border: 1px solid rgba(255, 215, 0, 0.25);
+      gap: 1.2rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.5rem 1.2rem 0.5rem 0.9rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .user-profile i {
-      font-size: 1.7rem;
-      color: #ffd966;
-      background: #1f2638;
-      padding: 6px;
+      font-size: 1.3rem;
+      color: #b7c3d9;
+      transition: color 0.2s;
+    }
+
+    .user-profile i:hover {
+      color: #f5c542;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #2e3b52, #1b2333);
       border-radius: 50%;
-    }
-
-    .user-profile span {
-      color: #eee;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    /* main content grid */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 2rem;
-    }
-
-    /* left side - movie list */
-    .movie-list-section h2 {
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .movie-list-section h2 i {
-      color: #ffd966;
-      font-size: 1.6rem;
-    }
-
-    .movie-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.3rem;
-    }
-
-    .movie-card {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 1.8rem;
-      padding: 1rem 1.4rem 1rem 1rem;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .movie-card:hover {
-      background: rgba(255, 215, 0, 0.08);
-      border-color: rgba(255, 215, 0, 0.4);
-      transform: scale(1.01);
-      box-shadow: 0 8px 22px rgba(255, 200, 0, 0.15);
-    }
-
-    .movie-card.selected {
-      background: rgba(255, 215, 0, 0.15);
-      border: 1.5px solid #ffd966;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-    }
-
-    .movie-poster {
-      width: 75px;
-      height: 100px;
-      border-radius: 1rem;
-      object-fit: cover;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      margin-right: 1.3rem;
-      background: #1e1e2a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      color: #ffd966;
-      flex-shrink: 0;
+      border: 2px solid #f5c542;
+      color: #f5c542;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
-    /* fallback icons for posters */
-    .movie-poster i {
-      font-size: 2.5rem;
-      opacity: 0.8;
+    /* search + filter bar */
+    .search-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      flex: 2;
+      min-width: 260px;
+      display: flex;
+      align-items: center;
+      background: #1e273b;
+      border-radius: 60px;
+      padding: 0.1rem 0.1rem 0.1rem 1.5rem;
+      border: 1px solid #2e3b52;
+      transition: all 0.2s;
+    }
+
+    .search-box:focus-within {
+      border-color: #f5c542;
+      box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.2);
+    }
+
+    .search-box i {
+      color: #7e8aa3;
+      font-size: 1.1rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 0.9rem 1rem;
+      color: #f0f4fe;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: #5d6a83;
+      font-weight: 400;
+    }
+
+    .search-box button {
+      background: #f5c542;
+      border: none;
+      border-radius: 60px;
+      padding: 0.8rem 1.8rem;
+      font-weight: 600;
+      color: #0b0f1c;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      letter-spacing: 0.2px;
+    }
+
+    .search-box button:hover {
+      background: #ffd95c;
+      transform: scale(1.02);
+    }
+
+    .filter-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #1e273b;
+      border-radius: 60px;
+      padding: 0.2rem 0.2rem 0.2rem 1.2rem;
+      border: 1px solid #2e3b52;
+    }
+
+    .filter-badge span {
+      color: #b7c3d9;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .filter-badge select {
+      background: #131b2b;
+      color: #f0f4fe;
+      border: 1px solid #2e3b52;
+      border-radius: 60px;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+      font-weight: 500;
+    }
+
+    .filter-badge select:hover {
+      border-color: #f5c542;
+    }
+
+    /* movie grid */
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .movie-card {
+      background: #131b2b;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #26304a;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-6px);
+      border-color: #f5c542;
+      box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(245, 197, 66, 0.3);
+    }
+
+    .poster {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0.6rem;
+    }
+
+    /* poster gradients (instead of external images) */
+    .poster-1 { background: linear-gradient(135deg, #1f2a3f, #0f1422), radial-gradient(circle at 30% 40%, #4b3b1f, #0f1422); background-blend-mode: overlay; }
+    .poster-2 { background: linear-gradient(135deg, #1a2a3a, #0e1622), radial-gradient(circle at 70% 30%, #3b2e4b, #0e1622); background-blend-mode: overlay; }
+    .poster-3 { background: linear-gradient(135deg, #232b3b, #141c28), radial-gradient(circle at 40% 60%, #2c4a4a, #141c28); background-blend-mode: overlay; }
+    .poster-4 { background: linear-gradient(135deg, #2a1f2f, #1a1220), radial-gradient(circle at 60% 20%, #553b3b, #1a1220); background-blend-mode: overlay; }
+
+    .rating {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      border-radius: 30px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #f5c542;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      border: 1px solid rgba(245, 197, 66, 0.4);
+    }
+
+    .rating i {
+      font-size: 0.75rem;
     }
 
     .movie-info {
+      padding: 1.2rem 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
       flex: 1;
     }
 
-    .movie-info h3 {
-      color: #fff;
-      font-size: 1.25rem;
+    .movie-title {
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 5px;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
       letter-spacing: -0.3px;
+      line-height: 1.3;
     }
 
     .movie-meta {
       display: flex;
-      gap: 15px;
-      color: #a9b2c7;
+      gap: 0.8rem;
       font-size: 0.8rem;
+      color: #8b99b3;
+      margin-bottom: 1rem;
       font-weight: 500;
-      margin-bottom: 8px;
     }
 
     .movie-meta i {
-      color: #ffd966;
-      margin-right: 4px;
-      font-size: 0.75rem;
-    }
-
-    .badge {
-      background: rgba(255, 215, 0, 0.2);
-      border-radius: 30px;
-      padding: 0.2rem 0.8rem;
       font-size: 0.7rem;
-      font-weight: 700;
-      color: #ffd966;
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      letter-spacing: 0.3px;
+      margin-right: 0.2rem;
+      color: #f5c542;
     }
 
-    /* right side - booking summary */
-    .booking-summary {
-      background: rgba(15, 20, 30, 0.7);
-      border-radius: 2rem;
-      padding: 1.8rem 1.8rem 1.8rem;
-      border: 1px solid rgba(255, 215, 0, 0.15);
-      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.7);
-      display: flex;
-      flex-direction: column;
-      backdrop-filter: blur(8px);
-    }
-
-    .summary-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.8rem;
-    }
-
-    .summary-header h2 {
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .summary-header h2 i {
-      color: #ffd966;
-    }
-
-    .ticket-icon {
-      font-size: 1.8rem;
-      color: #ffd966;
-      opacity: 0.8;
-    }
-
-    .selected-movie-detail {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 0.9rem 1.2rem;
-      border-radius: 1.5rem;
-      margin-bottom: 2rem;
-      border-left: 4px solid #ffd966;
-    }
-
-    .selected-movie-detail .small-poster {
-      width: 45px;
-      height: 60px;
-      background: #1f2638;
-      border-radius: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffd966;
-      font-size: 1.5rem;
-    }
-
-    .selected-movie-detail h4 {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .selected-movie-detail p {
-      color: #a9b2c7;
-      font-size: 0.75rem;
-    }
-
-    /* showtime chips */
-    .showtimes h3, .seats-section h3 {
-      color: #ddd;
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .showtimes h3 i, .seats-section h3 i {
-      color: #ffd966;
-      font-size: 0.9rem;
-    }
-
-    .time-chips {
+    .showtimes {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 2rem;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      margin-top: auto;
     }
 
-    .time-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ccc;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
+    .time-badge {
+      background: #1f293f;
+      padding: 0.45rem 0.9rem;
+      border-radius: 40px;
       font-size: 0.8rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
+      color: #d0dbf0;
+      border: 1px solid #2d3a55;
+      transition: all 0.15s;
+      cursor: default;
     }
 
-    .time-chip:hover {
-      background: rgba(255, 215, 0, 0.1);
-      border-color: #ffd966;
-      color: #ffd966;
-    }
-
-    .time-chip.active {
-      background: #ffd966;
-      border-color: #ffd966;
-      color: #0b0f1c;
-      font-weight: 700;
-      box-shadow: 0 0 15px #ffd966;
-    }
-
-    /* seat selection */
-    .seats-grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 1.5rem;
-    }
-
-    .seat-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .seat {
-      width: 38px;
-      height: 38px;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 12px 12px 6px 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #aaa;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.2s;
-    }
-
-    .seat.available:hover {
-      background: rgba(255, 215, 0, 0.25);
-      border-color: #ffd966;
-      color: #ffd966;
-      transform: scale(1.05);
-    }
-
-    .seat.selected {
-      background: #ffd966;
-      border-color: #ffd966;
-      color: #0b0f1c;
-      font-weight: 700;
-      box-shadow: 0 0 18px #ffd966;
-    }
-
-    .seat.occupied {
-      background: #2a3142;
-      border-color: #3d455a;
-      color: #5a627a;
-      cursor: not-allowed;
-    }
-
-    .screen-label {
-      text-align: center;
-      margin: 6px 0 18px;
-      color: #8892aa;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      font-weight: 600;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .screen-label i {
-      color: #ffd966;
-      font-size: 0.6rem;
-    }
-
-    .price-breakdown {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 1.2rem;
-      padding: 1rem 1.2rem;
-      margin: 1rem 0 1.2rem;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      color: #bbb;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-
-    .price-row.total {
-      color: #ffd966;
-      font-weight: 700;
-      font-size: 1.25rem;
-      border-top: 1px solid rgba(255, 215, 0, 0.2);
-      padding-top: 12px;
-      margin-top: 8px;
+    .time-badge:hover {
+      background: #2d3a55;
+      border-color: #f5c542;
+      color: #ffffff;
     }
 
     .book-btn {
-      background: linear-gradient(135deg, #ffd966, #f5b81b);
-      border: none;
-      border-radius: 50px;
-      padding: 1rem 1.5rem;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #0b0f1c;
-      letter-spacing: 0.5px;
+      background: transparent;
+      border: 1.5px solid #f5c542;
+      color: #f5c542;
+      font-weight: 700;
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      cursor: pointer;
-      transition: all 0.25s;
-      box-shadow: 0 10px 25px -5px rgba(255, 200, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      margin-top: 0.5rem;
-    }
-
-    .book-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 30px -5px #ffd966;
-      background: linear-gradient(135deg, #ffe28c, #ffc107);
+      gap: 0.5rem;
+      letter-spacing: 0.3px;
+      width: 100%;
     }
 
     .book-btn i {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
     }
 
-    .notification {
-      text-align: center;
-      margin-top: 0.8rem;
-      font-size: 0.8rem;
-      color: #8f9bb3;
+    .book-btn:hover {
+      background: #f5c542;
+      color: #0b0f1c;
+      border-color: #f5c542;
+      box-shadow: 0 6px 14px rgba(245, 197, 66, 0.3);
+    }
+
+    /* booking summary / footer */
+    .booking-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background: #101827;
+      border-radius: 2rem;
+      padding: 1rem 1.8rem;
+      border: 1px solid #26304a;
+      gap: 1rem;
+    }
+
+    .selected-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .selected-info p {
+      color: #b7c3d9;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .selected-info i {
+      color: #f5c542;
+      font-size: 1.1rem;
+    }
+
+    .badge-count {
+      background: #f5c542;
+      color: #0b0f1c;
+      font-weight: 700;
+      border-radius: 30px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+    }
+
+    .checkout-btn {
+      background: #f5c542;
+      border: none;
+      border-radius: 60px;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0b0f1c;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .checkout-btn:hover {
+      background: #ffda5e;
+      transform: scale(1.02);
+      box-shadow: 0 8px 18px rgba(245, 197, 66, 0.4);
+    }
+
+    .checkout-btn i {
+      font-size: 1rem;
     }
 
     /* responsive */
-    @media (max-width: 950px) {
-      .main-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 700px) {
+      .booking-platform {
+        padding: 1.5rem 1rem;
       }
-      .booking-container {
-        padding: 1.5rem;
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-badge {
+        justify-content: space-between;
+      }
+
+      .booking-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .selected-info {
+        justify-content: space-between;
+      }
+
+      .checkout-btn {
+        justify-content: center;
+      }
+
+      .poster {
+        height: 200px;
       }
     }
 
-    @media (max-width: 550px) {
-      .movie-card {
-        flex-wrap: wrap;
-      }
-      .seat {
-        width: 32px;
-        height: 32px;
-        font-size: 0.6rem;
-      }
-      .seat-row {
-        gap: 8px;
+    @media (max-width: 450px) {
+      .movie-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="booking-container">
-    <!-- Header -->
+  <div class="booking-platform">
+    <!-- header -->
     <div class="header">
       <div class="logo">
         <i class="fas fa-film"></i>
-        <h1>CineMagic</h1>
+        <div>
+          <h1>CineBook <span>tickets</span></h1>
+        </div>
       </div>
       <div class="user-profile">
-        <i class="fas fa-user-circle"></i>
-        <span>Alex Morgan</span>
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-cog"></i>
+        <div class="avatar">JD</div>
       </div>
     </div>
 
-    <!-- Main content -->
-    <div class="main-grid">
-      <!-- Left: Movie list -->
-      <div class="movie-list-section">
-        <h2><i class="fas fa-video"></i> Now Showing</h2>
-        <div class="movie-cards" id="movieList">
-          <!-- Movie 1 -->
-          <div class="movie-card selected" data-id="1" data-title="Dune: Part Two" data-price="12.5" data-rating="PG-13">
-            <div class="movie-poster">
-              <i class="fas fa-meteor"></i>
-            </div>
-            <div class="movie-info">
-              <h3>Dune: Part Two</h3>
-              <div class="movie-meta">
-                <span><i class="fas fa-clock"></i> 2h 46m</span>
-                <span><i class="fas fa-star"></i> 8.8</span>
-                <span class="badge">IMAX</span>
-              </div>
-            </div>
+    <!-- search & filter -->
+    <div class="search-section">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search movies, cinemas, or genres...">
+        <button>Search</button>
+      </div>
+      <div class="filter-badge">
+        <span><i class="fas fa-sliders-h" style="margin-right: 6px;"></i>Genre</span>
+        <select>
+          <option>All</option>
+          <option>Action</option>
+          <option>Sci-Fi</option>
+          <option>Drama</option>
+          <option>Comedy</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- movie grid -->
+    <div class="movie-grid">
+      <!-- movie 1 -->
+      <div class="movie-card">
+        <div class="poster poster-1">
+          <div class="rating"><i class="fas fa-star"></i> 8.7</div>
+        </div>
+        <div class="movie-info">
+          <div class="movie-title">Dune: Part Two</div>
+          <div class="movie-meta">
+            <span><i class="far fa-clock"></i> 166 min</span>
+            <span><i class="fas fa-tag"></i> Sci-Fi</span>
           </div>
-          <!-- Movie 2 -->
-          <div class="movie-card" data-id="2" data-title="Poor Things" data-price="10.0" data-rating="R">
-            <div class="movie-poster">
-              <i class="fas fa-flask"></i>
-            </div>
-            <div class="movie-info">
-              <h3>Poor Things</h3>
-              <div class="movie-meta">
-                <span><i class="fas fa-clock"></i> 2h 21m</span>
-                <span><i class="fas fa-star"></i> 8.1</span>
-                <span class="badge">4K</span>
-              </div>
-            </div>
+          <div class="showtimes">
+            <span class="time-badge">10:30 AM</span>
+            <span class="time-badge">2:15 PM</span>
+            <span class="time-badge">6:00 PM</span>
           </div>
-          <!-- Movie 3 -->
-          <div class="movie-card" data-id="3" data-title="The Batman" data-price="11.0" data-rating="PG-13">
-            <div class="movie-poster">
-              <i class="fas fa-mask"></i>
-            </div>
-            <div class="movie-info">
-              <h3>The Batman</h3>
-              <div class="movie-meta">
-                <span><i class="fas fa-clock"></i> 2h 56m</span>
-                <span><i class="fas fa-star"></i> 7.9</span>
-                <span class="badge">Dolby</span>
-              </div>
-            </div>
-          </div>
+          <button class="book-btn"><i class="fas fa-ticket-alt"></i> Book now</button>
         </div>
       </div>
 
-      <!-- Right: Booking summary -->
-      <div class="booking-summary">
-        <div class="summary-header">
-          <h2><i class="fas fa-ticket-alt"></i> Your Booking</h2>
-          <i class="fas fa-couch ticket-icon"></i>
+      <!-- movie 2 -->
+      <div class="movie-card">
+        <div class="poster poster-2">
+          <div class="rating"><i class="fas fa-star"></i> 7.9</div>
         </div>
-
-        <!-- Selected movie preview -->
-        <div class="selected-movie-detail" id="selectedMoviePreview">
-          <div class="small-poster"><i class="fas fa-meteor"></i></div>
-          <div>
-            <h4 id="previewTitle">Dune: Part Two</h4>
-            <p><span id="previewRating">PG-13</span> • <span id="previewPrice">$12.50</span></p>
+        <div class="movie-info">
+          <div class="movie-title">Oppenheimer</div>
+          <div class="movie-meta">
+            <span><i class="far fa-clock"></i> 180 min</span>
+            <span><i class="fas fa-tag"></i> Drama</span>
           </div>
-        </div>
-
-        <!-- Showtimes -->
-        <div class="showtimes">
-          <h3><i class="fas fa-clock"></i> Showtime</h3>
-          <div class="time-chips" id="timeChips">
-            <div class="time-chip active" data-time="14:30">2:30 PM</div>
-            <div class="time-chip" data-time="17:45">5:45 PM</div>
-            <div class="time-chip" data-time="20:15">8:15 PM</div>
-            <div class="time-chip" data-time="22:30">10:30 PM</div>
+          <div class="showtimes">
+            <span class="time-badge">11:00 AM</span>
+            <span class="time-badge">3:30 PM</span>
+            <span class="time-badge">7:45 PM</span>
           </div>
-        </div>
-
-        <!-- Seats -->
-        <div class="seats-section">
-          <h3><i class="fas fa-chair"></i> Select Seats</h3>
-          <div class="seats-grid" id="seatsGrid">
-            <!-- Row 1 (A) -->
-            <div class="seat-row">
-              <div class="seat occupied" data-seat="A1">A1</div>
-              <div class="seat occupied" data-seat="A2">A2</div>
-              <div class="seat available" data-seat="A3">A3</div>
-              <div class="seat available" data-seat="A4">A4</div>
-              <div class="seat available" data-seat="A5">A5</div>
-              <div class="seat occupied" data-seat="A6">A6</div>
-            </div>
-            <!-- Row 2 (B) -->
-            <div class="seat-row">
-              <div class="seat available" data-seat="B1">B1</div>
-              <div class="seat available" data-seat="B2">B2</div>
-              <div class="seat occupied" data-seat="B3">B3</div>
-              <div class="seat available" data-seat="B4">B4</div>
-              <div class="seat available" data-seat="B5">B5</div>
-              <div class="seat available" data-seat="B6">B6</div>
-            </div>
-            <!-- Row 3 (C) -->
-            <div class="seat-row">
-              <div class="seat occupied" data-seat="C1">C1</div>
-              <div class="seat available" data-seat="C2">C2</div>
-              <div class="seat available" data-seat="C3">C3</div>
-              <div class="seat available" data-seat="C4">C4</div>
-              <div class="seat occupied" data-seat="C5">C5</div>
-              <div class="seat available" data-seat="C6">C6</div>
-            </div>
-          </div>
-          <div class="screen-label">
-            <i class="fas fa-circle"></i> SCREEN <i class="fas fa-circle"></i>
-          </div>
-        </div>
-
-        <!-- Price breakdown -->
-        <div class="price-breakdown">
-          <div class="price-row">
-            <span>Base price (x<span id="ticketCount">0</span>)</span>
-            <span id="basePrice">$0.00</span>
-          </div>
-          <div class="price-row">
-            <span>Booking fee</span>
-            <span>$1.50</span>
-          </div>
-          <div class="price-row total">
-            <span>Total</span>
-            <span id="totalPrice">$1.50</span>
-          </div>
-        </div>
-
-        <button class="book-btn" id="bookNowBtn">
-          <i class="fas fa-ticket-alt"></i> Book Tickets
-        </button>
-        <div class="notification" id="notificationMsg">
-          <i class="fas fa-info-circle"></i> Select seats to continue
+          <button class="book-btn"><i class="fas fa-ticket-alt"></i> Book now</button>
         </div>
       </div>
+
+      <!-- movie 3 -->
+      <div class="movie-card">
+        <div class="poster poster-3">
+          <div class="rating"><i class="fas fa-star"></i> 8.2</div>
+        </div>
+        <div class="movie-info">
+          <div class="movie-title">The Batman</div>
+          <div class="movie-meta">
+            <span><i class="far fa-clock"></i> 176 min</span>
+            <span><i class="fas fa-tag"></i> Action</span>
+          </div>
+          <div class="showtimes">
+            <span class="time-badge">12:20 PM</span>
+            <span class="time-badge">4:45 PM</span>
+            <span class="time-badge">9:00 PM</span>
+          </div>
+          <button class="book-btn"><i class="fas fa-ticket-alt"></i> Book now</button>
+        </div>
+      </div>
+
+      <!-- movie 4 -->
+      <div class="movie-card">
+        <div class="poster poster-4">
+          <div class="rating"><i class="fas fa-star"></i> 7.5</div>
+        </div>
+        <div class="movie-info">
+          <div class="movie-title">Poor Things</div>
+          <div class="movie-meta">
+            <span><i class="far fa-clock"></i> 141 min</span>
+            <span><i class="fas fa-tag"></i> Comedy</span>
+          </div>
+          <div class="showtimes">
+            <span class="time-badge">1:00 PM</span>
+            <span class="time-badge">5:20 PM</span>
+            <span class="time-badge">8:30 PM</span>
+          </div>
+          <button class="book-btn"><i class="fas fa-ticket-alt"></i> Book now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- booking / summary footer -->
+    <div class="booking-footer">
+      <div class="selected-info">
+        <p><i class="fas fa-chair"></i> Seats selected <span class="badge-count">2</span></p>
+        <p><i class="fas fa-clock"></i> Today, 6:00 PM</p>
+      </div>
+      <button class="checkout-btn">
+        <i class="fas fa-credit-card"></i> Checkout · $24.50
+      </button>
     </div>
   </div>
-
-  <script>
-    (function(){
-      // ---------- STATE ----------
-      let selectedMovie = {
-        id: 1,
-        title: 'Dune: Part Two',
-        price: 12.5,
-        rating: 'PG-13'
-      };
-      
-      let selectedSeats = []; // array of seat IDs (strings like "A3")
-      const BOOKING_FEE = 1.50;
-
-      // DOM elements
-      const movieCards = document.querySelectorAll('.movie-card');
-      const timeChips = document.querySelectorAll('.time-chip');
-      const seats = document.querySelectorAll('.seat.available, .seat.selected');
-      const previewTitle = document.getElementById('previewTitle');
-      const previewRating = document.getElementById('previewRating');
-      const previewPrice = document.getElementById('previewPrice');
-      const selectedMoviePreviewPoster = document.querySelector('#selectedMoviePreview .small-poster i');
-      
-      const ticketCountSpan = document.getElementById('ticketCount');
-      const basePriceSpan = document.getElementById('basePrice');
-      const totalPriceSpan = document.getElementById('totalPrice');
-      const notificationMsg = document.getElementById('notificationMsg');
-      
-      // Helper: update price and seats display
-      function updateSummary() {
-        const seatCount = selectedSeats.length;
-        const base = seatCount * selectedMovie.price;
-        const total = seatCount > 0 ? base + BOOKING_FEE : 0; // if no seat, no fee
-        
-        ticketCountSpan.textContent = seatCount;
-        basePriceSpan.textContent = `$${base.toFixed(2)}`;
-        totalPriceSpan.textContent = `$${total.toFixed(2)}`;
-        
-        // notification update
-        if (seatCount === 0) {
-          notificationMsg.innerHTML = `<i class="fas fa-info-circle"></i> Select seats to continue`;
-        } else {
-          notificationMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#ffd966;"></i> ${seatCount} seat${seatCount > 1 ? 's' : ''} selected`;
-        }
-      }
-
-      // Helper: update movie preview & reset selected seats if needed
-      function updateMoviePreview() {
-        previewTitle.textContent = selectedMovie.title;
-        previewRating.textContent = selectedMovie.rating;
-        previewPrice.textContent = `$${selectedMovie.price.toFixed(2)}`;
-        
-        // update poster icon (small)
-        let iconClass = 'fa-meteor';
-        if (selectedMovie.id === 2) iconClass = 'fa-flask';
-        if (selectedMovie.id === 3) iconClass = 'fa-mask';
-        selectedMoviePreviewPoster.className = `fas ${iconClass}`;
-        
-        // also big poster icon? optional
-        // But we can leave
-      }
-
-      // Reset seats and selection state
-      function clearSeatSelection() {
-        document.querySelectorAll('.seat.selected').forEach(seat => {
-          seat.classList.remove('selected');
-          // ensure it's still available class
-          if (!seat.classList.contains('occupied')) {
-            seat.classList.add('available');
-          }
-        });
-        selectedSeats = [];
-        updateSummary();
-      }
-
-      // Reapply seat selection based on selectedSeats array (after movie change)
-      function applySeatSelectionFromArray() {
-        document.querySelectorAll('.seat').forEach(seat => {
-          const seatId = seat.dataset.seat;
-          if (selectedSeats.includes(seatId)) {
-            seat.classList.add('selected');
-            seat.classList.remove('available');
-          } else {
-            seat.classList.remove('selected');
-            if (!seat.classList.contains('occupied')) {
-              seat.classList.add('available');
-            }
-          }
-        });
-        updateSummary();
-      }
-
-      // ----- Movie selection -----
-      movieCards.forEach(card => {
-        card.addEventListener('click', function() {
-          // ignore if already selected
-          if (this.classList.contains('selected')) return;
-          
-          // remove selected class from all
-          movieCards.forEach(c => c.classList.remove('selected'));
-          this.classList.add('selected');
-          
-          // update selected movie data
-          const id = parseInt(this.dataset.id);
-          const title = this.dataset.title;
-          const price = parseFloat(this.dataset.price);
-          const rating = this.dataset.rating;
-          
-          // update state
-          selectedMovie = { id, title, price, rating };
-          
-          // update UI preview
-          updateMoviePreview();
-          
-          // Clear seat selection when movie changes
-          clearSeatSelection();
-          
-          // re-apply (but array empty so fine)
-          // update summary base price etc
-          updateSummary();
-          
-          // also reset time? keep showtime as is but maybe fine.
-        });
-      });
-
-      // ----- Time selection (visual only) -----
-      timeChips.forEach(chip => {
-        chip.addEventListener('click', function() {
-          timeChips.forEach(c => c.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
-
-      // ----- Seat selection -----
-      function initSeats() {
-        document.querySelectorAll('.seat').forEach(seat => {
-          // Remove any previous listeners by replacing element? simpler: add once
-          // We'll use event delegation or attach each time? We'll manage carefully.
-          // Using a named function, but to avoid duplicates we can use a flag.
-          if (seat.dataset.listenerAttached) return;
-          seat.dataset.listenerAttached = 'true';
-          
-          seat.addEventListener('click', function(e) {
-            // ignore if occupied
-            if (this.classList.contains('occupied')) return;
-            
-            const seatId = this.dataset.seat;
-            
-            if (this.classList.contains('selected')) {
-              // deselect
-              this.classList.remove('selected');
-              this.classList.add('available');
-              selectedSeats = selectedSeats.filter(id => id !== seatId);
-            } else {
-              // select (only if available)
-              if (this.classList.contains('available')) {
-                this.classList.remove('available');
-                this.classList.add('selected');
-                selectedSeats.push(seatId);
-              }
-            }
-            
-            // update price and notification
-            updateSummary();
-          });
-        });
-      }
-
-      // ----- Booking button -----
-      document.getElementById('bookNowBtn').addEventListener('click', function() {
-        if (selectedSeats.length === 0) {
-          alert('🎟️ Please select at least one seat to book.');
-          return;
-        }
-        const total = (selectedSeats.length * selectedMovie.price + BOOKING_FEE).toFixed(2);
-        const seatList = selectedSeats.sort().join(', ');
-        alert(`✅ Booking confirmed!\n\nMovie: ${selectedMovie.title}\nSeats: ${seatList}\nTotal: $${total}\n\nEnjoy your movie! 🍿`);
-        // Optionally reset seats
-        // clearSeatSelection(); // you can uncomment to reset after booking
-      });
-
-      // ----- initialize -----
-      function init() {
-        // setup seats
-        initSeats();
-        
-        // set movie preview to default selected movie (Dune)
-        selectedMovie = { id: 1, title: 'Dune: Part Two', price: 12.5, rating: 'PG-13' };
-        updateMoviePreview();
-        
-        // Clear seats
-        selectedSeats = [];
-        updateSummary();
-        
-        // make sure no seat is selected initially (there might be from static class)
-        document.querySelectorAll('.seat.selected').forEach(s => s.classList.remove('selected'));
-        document.querySelectorAll('.seat.available').forEach(s => s.classList.add('available'));
-        
-        // set first time chip active (already active in HTML)
-        // Just ensure all chips clickable
-      }
-
-      init();
-      
-      // additional safety: ensure occupied seats don't have available class
-      document.querySelectorAll('.seat.occupied').forEach(seat => {
-        seat.classList.remove('available', 'selected');
-      });
-      
-      // fix any selected seats that are occupied? but we removed selected if occupied
-      document.querySelectorAll('.seat.occupied.selected').forEach(s => s.classList.remove('selected'));
-
-    })();
-  </script>
 </body>
 </html>
